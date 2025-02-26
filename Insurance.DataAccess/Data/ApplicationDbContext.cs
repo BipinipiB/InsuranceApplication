@@ -32,6 +32,8 @@ namespace Insurance.DataAccess.Data
 
         public DbSet<QuestionTypeEntity> QuestionTypeEntities { get; set; }
 
+        public DbSet<Question> Questions { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -74,9 +76,35 @@ namespace Insurance.DataAccess.Data
            new QuestionTypeEntity { Id = 1, Name = "Multiple Choice" },
            new QuestionTypeEntity { Id = 2, Name = "True/False" },
            new QuestionTypeEntity { Id = 3, Name = "Text" }
-       );
+            );
+
+            //Seet data for Question
+           modelBuilder.Entity<Question>().HasData(
+           new Question { Id = 1, QuestionLabel = "What Kind o Procedure are you making a claim for?",QuestionTypeId=3, Step="MakeAClaim", IsActive=true },
+           new Question { Id = 2, QuestionLabel = "Do you have other insurance policy you could claim against?", QuestionTypeId = 4, Step = "MakeAClaim", IsActive = true },
+           new Question { Id = 3, QuestionLabel = "ClaimAmount", QuestionTypeId = 3, Step = "PaymentInfo",IsActive = true },
+           new Question { Id = 4, QuestionLabel = "Enter Credit Card Number", QuestionTypeId = 3, Step = "PaymentInfo", IsActive = true },
+           new Question { Id = 5, QuestionLabel = "ExpiryDate", QuestionTypeId = 3, Step = "Expiry Date", IsActive = true },
+           new Question { Id = 6, QuestionLabel = "ExpiryDate", QuestionTypeId = 3, Step = "CCV", IsActive = true }
+            );
+
         }
 
+
+        /*
+             //max lenght is 1024 chars for question column
+        [StringLength(1024)]
+        public string QuestionLabel { get; set; }
+
+        //QuestionTypeId Column is a Foreign Key
+        [Required, NotNull]
+        public int? QuestionTypeId { get; set; } 
+
+        public QuestionTypeEntity? QuestionType { get; set; }
+
+        public bool IsActive { get; set; }
+         
+         */
 
 
     }
