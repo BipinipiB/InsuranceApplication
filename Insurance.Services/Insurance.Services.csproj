@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Insurance.DataAccess\Insurance.DataAccess.csproj" />
     <ProjectReference Include="..\Insurance.Models\Insurance.Models.csproj" />
     <ProjectReference Include="..\Insurance.Utility\Insurance.Utility.csproj" />

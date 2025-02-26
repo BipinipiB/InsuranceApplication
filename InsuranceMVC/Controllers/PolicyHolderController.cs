@@ -48,5 +48,12 @@ namespace InsuranceApp.Controllers
             }
 
         }
+
+        [HttpGet]
+        public IActionResult MakeAClaim()
+        {
+            Console.WriteLine("Hello from MakeAClaim");
+            return View();
+        }
     }
 }

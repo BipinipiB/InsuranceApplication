@@ -30,6 +30,7 @@ namespace Insurance.DataAccess.Data
         //Db Set for policyType
         public DbSet<PolicyType> PolicyType { get; set; }
 
+        public DbSet<QuestionTypeEntity> QuestionTypeEntities { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -67,9 +68,16 @@ namespace Insurance.DataAccess.Data
                 new PolicyType { Id = 2, Name = "Family Health Insurance", IsActive = true },
                 new PolicyType { Id = 3, Name = "Group Health Insurance", IsActive = true }
             );
+
+            //Seet data for QuestionTypeEntities
+            modelBuilder.Entity<QuestionTypeEntity>().HasData(
+           new QuestionTypeEntity { Id = 1, Name = "Multiple Choice" },
+           new QuestionTypeEntity { Id = 2, Name = "True/False" },
+           new QuestionTypeEntity { Id = 3, Name = "Text" }
+       );
         }
 
-        
+
 
     }
 }
