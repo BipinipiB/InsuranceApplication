@@ -1,0 +1,56 @@
+﻿@using Insurance.Models
+@using Insurance.Models.Models
+
+@model EmployeeModel
+@{
+    ViewData["Title"] = "Add New Employee";
+}
+
+<div class="col-6 border p-3 offset-md-3">
+    <div class="offset-md-3">
+        <h1>@ViewData["Title"]</h1>
+    </div>
+    <hr />
+    <form asp-action="AddEmployee" method="post">
+
+        <div class="form-group">
+            <label for="FirstName">First Name</label>
+            <input type="text" asp-for="FirstName" class="form-control" id="firstname" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="LastName">Last Name</label>
+            <input type="text" asp-for="LastName" class="form-control" id="lastname" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="Email">Email</label>
+            <input type="email" asp-for="Email" class="form-control" id="Email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="Password">Password</label>
+            <input type="password" asp-for="Password" class="form-control" id="Password" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="ConfirmPassword">Confirm Password</label>
+            <input type="password" asp-for="ConfirmPassword" class="form-control" id="ConfirmPassword" />
+            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Add</button>
+    </form>
+
+    <hr />
+
+    <p>Already have an account? <a href="/Account/Login">Login here</a>.</p>
+</div>
+
+
+<script>
+    // Client-side validation (optional, if needed for better UX)
+
+</script>

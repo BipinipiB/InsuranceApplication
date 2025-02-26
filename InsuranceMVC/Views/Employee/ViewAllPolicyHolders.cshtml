@@ -1,0 +1,39 @@
+﻿@using Insurance.Models
+
+@model List<PolicyHolderViewModel>
+
+<h1>Policy Holders List</h1>
+
+<table id="tblData" class="table table-bordered table-striped">
+    <thead class="bg-opacity-10">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name </th>
+            <th>Email </th>
+            <th>Status </th>
+            <th>Policy Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Users.FirstName</td>
+                <td>@item.Users.LastName</td>
+                <td>@item.Users.Email</td>
+                <td>
+                    @if (item.Users.IsActive)
+                    {
+                        <span class="">Active</span>
+                    }
+                    else
+                    {
+                        <span class="">Inactive</span>
+                    }
+                </td>
+                <td> @item.PolicyName</td>
+                
+            </tr>
+        }
+    </tbody>
+</table>

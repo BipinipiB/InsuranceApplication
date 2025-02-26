@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Insurance.DataAccess\Insurance.DataAccess.csproj" />
+    <ProjectReference Include="..\Insurance.Models\Insurance.Models.csproj" />
+    <ProjectReference Include="..\Insurance.Utility\Insurance.Utility.csproj" />
+  </ItemGroup>
+
+</Project>

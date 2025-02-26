@@ -1,0 +1,47 @@
+﻿﻿@using Insurance.Models.Models
+
+@model LoginModel
+
+
+
+<div class="col-6 border p-3 offset-md-3">
+    <div class="offset-md-3">
+        @{
+            ViewData["Title"] = "Login";
+        }
+    </div>
+
+    <h1>@ViewData["Title"]</h1>
+    <hr />
+    <form asp-action="Login" method="post">
+        <div class="form-group">
+            <label for="Email">Email</label>
+            <input type="email" asp-for="Email" class="form-control" id="Email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="Password">Password</label>
+            <input type="password" asp-for="Password" class="form-control" id="Password" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <div class="form-group form-check">
+            <input type="checkbox" asp-for="RememberMe" class="form-check-input" />
+            <label class="form-check-label" for="RememberMe">Remember Me</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    <hr />
+    
+</div>
+
+
+
+
+
+<script>
+    // Client-side validation (optional, if needed for better UX)
+
+</script>

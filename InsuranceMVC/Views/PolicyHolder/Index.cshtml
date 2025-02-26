@@ -1,0 +1,42 @@
+﻿@using Insurance.Models
+@using Insurance.Models.Models
+
+
+
+@model PolicyHolderInfoModel
+
+
+<h1> Welcome, @Model.FirstName ! </h1>
+
+
+<div class="Col-12" style="border: 2px solid #ccc; border-radius: 10px; padding: 15px; background-color: #f9f9f9; margin: 20px 0;">
+    <h4>Your Policy Information</h4>
+    <hr/>
+    <div class="row">
+        <div class="col-5">
+            FullName: @Model.FirstName @Model.LastName
+        </div>
+        <div class="col-6">
+            Policy No: @Model.PolicyNumber
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-5">
+            Policy Type: @Model.PolicyType
+        </div>
+        <div class="col-6">
+            Start Date: @Model.StartDate
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            Email: @Model.Email
+        </div>
+    </div>
+</div>
+
+<div id="ButtonContainer">
+
+    <p>Buttons Container here</p>
+
+</div>

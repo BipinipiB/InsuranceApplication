@@ -1,0 +1,30 @@
+﻿@using Insurance.Models.Models
+
+
+@model PolicyVM
+
+<h2>Add Policy Information</h2>
+<form method="post" asp-action="AddPolicyInformation">
+    <div class="form-group">
+        <label for="PolicyType">Policy Type</label>
+        <select asp-for="Policy.PolicyTypeId" class="form-control" asp-items="Model.PolicyTypeList"></select>
+        <span asp-validation-for="Policy.PolicyTypeId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="Premium">Premium</label>
+        <input type="text" asp-for="Policy.Premium" class="form-control" />
+        <span asp-validation-for="Policy.Premium" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="StartDate">Start Date</label>
+        <input type="date" asp-for="Policy.StartDate" class="form-control" />
+        <span asp-validation-for="Policy.StartDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="EndDate">End Date</label>
+        <input type="date" asp-for="Policy.EndDate" class="form-control" />
+        <span asp-validation-for="Policy.EndDate" class="text-danger"></span>
+    </div>
+    <!-- Additional fields -->
+    <button type="submit" class="btn btn-primary">Next: Review and Confirm</button>
+</form>
