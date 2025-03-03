@@ -7,6 +7,7 @@ namespace Insurance.DataAccess.Repository.IRepository
         IUserRepository userRepo { get; }
         IPolicyRepository policyRepo { get; }
 
+        IQuestionTypeRepository questionTypeRepo { get; }
         void Save();
     }
 }

@@ -20,18 +20,23 @@ namespace Insurance.DataAccess.Repository.IRepository
         public IUserRepository userRepo { get; private set; }
 
         public IPolicyRepository policyRepo { get; private set; }
+
+        public IQuestionTypeRepository questionTypeRepo { get; private set; }
+
         //SignInManager is also class of asp.net core Identity Framework
         //This handles all aspects of user sign-in and authenticatrion
         private readonly SignInManager<ApplicationUser> _signInManager;
 
 
-        public UnitOfWork(ApplicationDbContext db, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public UnitOfWork(ApplicationDbContext db, UserManager<ApplicationUser> userManager,
+                            SignInManager<ApplicationUser> signInManager)
         {
             _db = db;
             _userManager = userManager;
             userRepo = new UserRepository(_userManager);
             policyRepo = new PolicyRepository(_db);
             _signInManager = signInManager;
+            questionTypeRepo = new QuestionTypeRepository(_db);
         }
 
         public void Save()
@@ -54,7 +59,12 @@ namespace Insurance.DataAccess.Repository.IRepository
             return string.Empty;
         }
 
-        
+
+        public QuestionTypeDto GetQuestionType(int i)
+        {
+
+            return questionTypeRepo.GetQuestionTypeById(i);
+        }
 
     }
 }

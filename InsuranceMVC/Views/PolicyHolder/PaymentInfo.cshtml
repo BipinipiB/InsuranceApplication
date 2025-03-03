@@ -1,0 +1,53 @@
+﻿@using Insurance.Models.Models
+
+@model List<QuestionDto>
+
+<h1> Payment Info</h1>
+
+
+    <form asp-controller="PolicyHolder" asp-action="PaymentInformationOnNext" method="post">
+
+        <div class="border-2 p-5">
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <div class="question-block">
+                    <h6>@Model[i].QuestionLabel</h6>
+                    <div class="question-input">
+                        <p>
+                            @if (Model[i].QuestionTypeName == "Text")
+                            {
+                                <textarea class="form-control fixed-height"
+                                          placeholder="Enter answer here"
+                                          asp-for="@Model[i].TextAnswer"></textarea>
+                            }
+                            @if (Model[i].QuestionTypeName == "Yes/No")
+                            {
+                                <label>
+                                    <input type="radio" asp-for="@Model[i].YesNoAnswer" value="true" /> Yes
+                                </label>
+                                <label>
+                                    <input type="radio" asp-for="@Model[i].YesNoAnswer" value="false" /> No
+                                </label>
+                            }
+                        </p>
+                        <!-- Add hidden fields for QuestionLabel and QuestionType -->
+                    <input type="hidden" asp-for="@Model[i].QuestionLabel" />
+                    <input type="hidden" asp-for="@Model[i].QuestionTypeName" />
+                     <input type="hidden" asp-for="@Model[i].QuestionTypeId" />
+                    </div>
+                </div>
+            }
+
+            <button  class="btn btn-primary float-end" style="margin-bottom: 10px;">Next</button>
+
+        </div>
+
+    </form>
+
+    <style>
+        .form-control.fixed-height {
+            height: 20px;
+            resize: none;
+        }
+
+    </style>

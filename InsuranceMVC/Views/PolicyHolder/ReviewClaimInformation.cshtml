@@ -1,0 +1,86 @@
+﻿@using Insurance.Models.Models
+
+@model ReviewAndSumitDto
+
+<h1> Review And Submit</h1>
+<hr />
+
+<div>
+    <div class="border-2 p-2">
+        <div id="ClaimInformation">
+            <h2>Claim Information</h2>
+            <hr />
+                @for (int i = 0; i < Model.ClaimInfo.Count; i++)
+                {
+                    <div class="question-block">
+                        <h6>@Model.ClaimInfo[i].QuestionLabel</h6>
+                        <div class="question-input col-4">
+                            @if (@Model.ClaimInfo[i].QuestionTypeName =="Text"){
+                                <p>@Model.ClaimInfo[i].TextAnswer</p>
+
+                            }
+                            @if (@Model.ClaimInfo[i].QuestionTypeName == "Yes/No")
+                            {
+                                @if(@Model.ClaimInfo[i].YesNoAnswer == false)
+                                {
+                                     <p>No</p>
+                                }
+
+                                @if (@Model.ClaimInfo[i].YesNoAnswer  == true)
+                                {
+                                    <p>Yes</p>
+                                }
+                       
+
+                            }
+
+                        </div>
+                    </div>
+                }
+        </div>
+
+        <div id="paymentInfo">
+            <h2>Payment Information</h2>
+            <hr />
+            @for (int i = 0; i < Model.PaymentInfo.Count; i++)
+            {
+                <div class="question-block">
+                    <h6>@Model.PaymentInfo[i].QuestionLabel</h6>
+                    <div class="question-input col-4">
+                        @if (@Model.PaymentInfo[i].QuestionTypeName == "Text")
+                        {
+                            <p>@Model.PaymentInfo[i].TextAnswer</p>
+
+                        }
+                        @if (@Model.PaymentInfo[i].QuestionTypeName == "Yes/No")
+                        {
+                            @if (@Model.PaymentInfo[i].YesNoAnswer == false)
+                            {
+                                <p>No</p>
+                            }
+
+                            @if (@Model.PaymentInfo[i].YesNoAnswer == true)
+                            {
+                                <p>Yes</p>
+                            }
+
+
+                        }
+
+                    </div>
+                </div>
+            }
+
+        </div>
+
+    </div>
+</div>
+
+<button class="btn btn-primary float-end" style="margin-bottom: 10px;">Submit</button>
+
+<style>
+    .form-control.fixed-height {
+        height: 20px;
+        resize: none;
+    }
+</style>

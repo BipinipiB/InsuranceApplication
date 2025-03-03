@@ -36,6 +36,8 @@ namespace InsuranceApp.Controllers
 
                 var isEmployee = await _userManager.IsInRoleAsync(currentUser, "Employee");
 
+                var isPolicyHolder = await _userManager.IsInRoleAsync(currentUser, "PolicyHolder");
+
                 if (isAdmin)
                 {
                     return RedirectToAction("Index", "Admin");
@@ -46,6 +48,10 @@ namespace InsuranceApp.Controllers
                     return RedirectToAction("Index", "Employee"); ;
                 }
 
+                if(isPolicyHolder)
+                {
+                    return RedirectToAction("Index", "PolicyHolder");
+                }
             }
             else
             {
