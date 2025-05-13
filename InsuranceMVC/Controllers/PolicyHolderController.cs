@@ -9,7 +9,7 @@ namespace InsuranceApp.Controllers
 {
     public class PolicyHolderController : Controller
     {
-        private static IUserService  _userService;
+        private static IUserService _userService;
         private static IPolicyRepository _policyRepository;
         private static IQuestionRepository _questionRepo;
         private readonly SessionDataProtector _Protector;
@@ -27,7 +27,7 @@ namespace InsuranceApp.Controllers
         public async Task<IActionResult> Index()
         {
 
-           var currentUser = await _userService.GetCurrentLoggedInUserAsync();
+            var currentUser = await _userService.GetCurrentLoggedInUserAsync();
 
 
             if (currentUser == null)
@@ -36,9 +36,9 @@ namespace InsuranceApp.Controllers
             }
             else
             {
-               var policyInfo = _policyRepository.GetPolicyByUserId(currentUser.Id);
+                var policyInfo = _policyRepository.GetPolicyByUserId(currentUser.Id);
 
-                PolicyHolderInfoModel userInfo =new PolicyHolderInfoModel
+                PolicyHolderInfoModel userInfo = new PolicyHolderInfoModel
                 {
                     Id = currentUser.Id,
                     FirstName = currentUser.FirstName,
@@ -82,9 +82,9 @@ namespace InsuranceApp.Controllers
             //seralize the list of questionAnswers
             var serializedQuestionAnswer = JsonConvert.SerializeObject(questions);
 
-          //protect serealized data
-            var ProtectorData= _Protector.Protect(serializedQuestionAnswer);
-          
+            //protect serealized data
+            var ProtectorData = _Protector.Protect(serializedQuestionAnswer);
+
             //store the protected data in session
             HttpContext.Session.SetString("MakeAClaimInforamtion", ProtectorData);
 
@@ -96,7 +96,7 @@ namespace InsuranceApp.Controllers
         public IActionResult PaymentInfo()
         {
 
-             var allActiveQuestion = _questionRepo.GetAllActiveQuestions();
+            var allActiveQuestion = _questionRepo.GetAllActiveQuestions();
 
             List<QuestionDto> step2Questions = new();
 
@@ -150,5 +150,22 @@ namespace InsuranceApp.Controllers
 
             return View(reviewAndSubmitDto);
         }
+
+
+        [HttpPost]
+        public IActionResult SubmitBtnOnClick()
+        {
+
+            var protectedClaimInfo = HttpContext.Session.GetString("MakeAClaimInforamtion");
+            var protectedPaymentInfo = HttpContext.Session.GetString("PaymentInformation");
+
+
+            var serializedClaimInfo = _Protector.Unprotect(protectedClaimInfo);
+            var serializedPaymentInfo = _Protector.Unprotect(protectedPaymentInfo);
+
+            return RedirectToAction("Index", "PolicyHolder");
+
+        }
+
     }
 }

@@ -34,6 +34,12 @@ namespace Insurance.DataAccess.Data
 
         public DbSet<Question> Questions { get; set; }
 
+        public DbSet<ClaimQuestionAnswer> ClaimQuestionAnswers { get; set; }
+
+        public DbSet<Claims> Claims { get; set; }
+
+        public DbSet<ClaimStatuses> ClaimStatuses { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -71,14 +77,14 @@ namespace Insurance.DataAccess.Data
                 new PolicyType { Id = 3, Name = "Group Health Insurance", IsActive = true }
             );
 
-            //Seet data for QuestionTypeEntities
+            //Seed data for QuestionTypeEntities
             modelBuilder.Entity<QuestionTypeEntity>().HasData(
            new QuestionTypeEntity { Id = 1, Name = "Multiple Choice" },
            new QuestionTypeEntity { Id = 2, Name = "True/False" },
            new QuestionTypeEntity { Id = 3, Name = "Text" }
             );
 
-            //Seet data for Question
+            //Seed data for Question
            modelBuilder.Entity<Question>().HasData(
            new Question { Id = 1, QuestionLabel = "What Kind o Procedure are you making a claim for?",QuestionTypeId=3, Step="MakeAClaim", IsActive=true },
            new Question { Id = 2, QuestionLabel = "Do you have other insurance policy you could claim against?", QuestionTypeId = 4, Step = "MakeAClaim", IsActive = true },
@@ -86,6 +92,13 @@ namespace Insurance.DataAccess.Data
            new Question { Id = 4, QuestionLabel = "Enter Credit Card Number", QuestionTypeId = 3, Step = "PaymentInfo", IsActive = true },
            new Question { Id = 5, QuestionLabel = "ExpiryDate", QuestionTypeId = 3, Step = "Expiry Date", IsActive = true },
            new Question { Id = 6, QuestionLabel = "ExpiryDate", QuestionTypeId = 3, Step = "CCV", IsActive = true }
+            );
+
+            //Seed data for ClaimStatuses
+            modelBuilder.Entity<ClaimStatuses>().HasData(
+                new ClaimStatuses { Id = 1, Name = "Pending", IsActive= true },
+                new ClaimStatuses { Id = 2, Name = "Approved" , IsActive= true},
+                new ClaimStatuses { Id = 3, Name = "Rejected", IsActive=true}
             );
 
         }
