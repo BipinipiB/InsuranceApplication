@@ -98,7 +98,8 @@ namespace Insurance.DataAccess.Data
             modelBuilder.Entity<ClaimStatuses>().HasData(
                 new ClaimStatuses { Id = 1, Name = "Pending", IsActive= true },
                 new ClaimStatuses { Id = 2, Name = "Approved" , IsActive= true},
-                new ClaimStatuses { Id = 3, Name = "Rejected", IsActive=true}
+                new ClaimStatuses { Id = 3, Name = "Rejected", IsActive=true},
+                new ClaimStatuses { Id = 4, Name = "Submitted", IsActive = true }
             );
 
         }

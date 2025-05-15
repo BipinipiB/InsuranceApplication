@@ -101,8 +101,6 @@ namespace Insurance.Services
 
 
 
-
-
         /*work in progress */
         public Policy CreatePolicyModel(RegisterCustomerModel customerInfo, string userId, 
             string createdById, string updatedById,DateTime createdOn)

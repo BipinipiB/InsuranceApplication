@@ -47,6 +47,12 @@ builder.Services.AddScoped<IPolicyService, PolicyService>();
 //register QuestionService
 builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
 
+//register ClaimService
+builder.Services.AddScoped<IClaimService, ClaimsService>();
+
+//register ClaimRepository
+builder.Services.AddScoped<IClaimRepository, ClaimRepository>();
+
 //Register SessionDataProtector
 builder.Services.AddScoped<SessionDataProtector>();
 

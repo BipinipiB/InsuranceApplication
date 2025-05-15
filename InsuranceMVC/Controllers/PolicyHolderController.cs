@@ -13,14 +13,19 @@ namespace InsuranceApp.Controllers
         private static IPolicyRepository _policyRepository;
         private static IQuestionRepository _questionRepo;
         private readonly SessionDataProtector _Protector;
+        private static IClaimRepository _claimRepository;
+        private static IClaimService _claimService;
 
         public PolicyHolderController(IUserService userService, IPolicyRepository policyRepository,
-                                       IQuestionRepository questionRepo, SessionDataProtector Protector)
+                                       IQuestionRepository questionRepo, SessionDataProtector Protector,
+                                        IClaimRepository claimRepository, IClaimService claimService)
         {
             _userService = userService;
             _policyRepository = policyRepository;
             _questionRepo = questionRepo;
             _Protector = Protector;
+            _claimRepository = claimRepository;
+            _claimService = claimService;
         }
 
 
@@ -162,6 +167,19 @@ namespace InsuranceApp.Controllers
 
             var serializedClaimInfo = _Protector.Unprotect(protectedClaimInfo);
             var serializedPaymentInfo = _Protector.Unprotect(protectedPaymentInfo);
+
+            var claimInfo = JsonConvert.DeserializeObject<List<QuestionDto>>(serializedClaimInfo);
+            var paymentInfo = JsonConvert.DeserializeObject<List<QuestionDto>>(serializedPaymentInfo);
+
+            var reviewAndSubmitDto = new ReviewAndSumitDto
+            {
+                ClaimInfo = claimInfo,
+                PaymentInfo = paymentInfo
+            };
+
+            var isSuccess = _claimService.SubmitClaim(reviewAndSubmitDto);
+
+            
 
             return RedirectToAction("Index", "PolicyHolder");
 
