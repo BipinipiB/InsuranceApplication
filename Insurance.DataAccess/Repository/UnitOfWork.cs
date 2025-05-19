@@ -66,5 +66,33 @@ namespace Insurance.DataAccess.Repository.IRepository
             return questionTypeRepo.GetQuestionTypeById(i);
         }
 
+
+
+
+        //*******************CLAIMS RElATED ***************************
+
+        public int CreateClaim(Claims claim)
+        {
+            //add record in Claims table
+            _db.Claims.Add(claim);
+
+            //commit
+            _db.SaveChanges();
+
+            //claim.id is returned from db
+            return claim.Id;
+        }
+
+        public Boolean createClaimQuestionAnswer(ClaimQuestionAnswer claimquestionasnwer)
+        {
+            
+            _db.ClaimQuestionAnswers.Add(claimquestionasnwer);
+
+            Boolean success = _db.SaveChanges() > 0;
+
+            return success;
+        }
+
+
     }
 }

@@ -65,6 +65,11 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+
+////allows access to the current HTTP context, which is useful for accessing session data and user information
+////used to get current user information in the application in service classes
+//builder.Services.AddHttpContextAccessor(); 
+
 //Create and Configure the web application
 var app = builder.Build();
 

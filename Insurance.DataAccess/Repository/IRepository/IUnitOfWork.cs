@@ -1,5 +1,7 @@
 ﻿
 
+using Insurance.Models.Models;
+
 namespace Insurance.DataAccess.Repository.IRepository
 {
     public interface IUnitOfWork
@@ -9,5 +11,9 @@ namespace Insurance.DataAccess.Repository.IRepository
 
         IQuestionTypeRepository questionTypeRepo { get; }
         void Save();
+
+        int CreateClaim(Claims claim);
+
+        Boolean createClaimQuestionAnswer(ClaimQuestionAnswer claimquestionasnwer);
     }
 }
