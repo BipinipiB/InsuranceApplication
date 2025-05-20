@@ -39,11 +39,9 @@ namespace Insurance.Services
 
             int claimId = _unitOfWork.CreateClaim(C);
 
-            foreach (var questionAnswer in ClaimInfo)
-            {
-                // Assuming you want to create a new ClaimQuestionAnswer for each question
-                CreateClaimQuestionAnswer(questionAnswer, claimId);
-            }
+            //Create ClaimQuestionAnswer for all questions
+            CreateClaimQuestionAnswer(ClaimInfo, claimId);
+           
 
             return true;
         }
@@ -68,9 +66,7 @@ namespace Insurance.Services
 
             return c;
         }
-
-       
-       
+              
 
         private string GenerateClaimNumber()
         {
@@ -83,17 +79,22 @@ namespace Insurance.Services
             return 4; 
         }
 
-        private void CreateClaimQuestionAnswer(QuestionDto questionAnswer, int claimId)
+        //methhod loops through the list of questionanswers and creates record in table
+        private void CreateClaimQuestionAnswer(List<QuestionDto> questionAnswerList, int claimId)
         {
+            ClaimQuestionAnswer cqa;
 
-            // Assuming you want to create a new ClaimQuestionAnswer for each question
-            ClaimQuestionAnswer cqa = new ClaimQuestionAnswer
+            foreach (var questionAnswer in questionAnswerList)
             {
-                ClaimId = claimId,
-                Questionid = questionAnswer.Id,
-                AnswerJson = JsonConvert.SerializeObject(questionAnswer)
-            };
-            _unitOfWork.createClaimQuestionAnswer(cqa);
+                 cqa = new ClaimQuestionAnswer
+                    {
+                        ClaimId = claimId,
+                        Questionid = questionAnswer.Id,
+                        AnswerJson = JsonConvert.SerializeObject(questionAnswer)
+                    };
+                _unitOfWork.createClaimQuestionAnswer(cqa);
+            }
+            
 
         }
     }

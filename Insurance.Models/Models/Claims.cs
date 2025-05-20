@@ -30,14 +30,14 @@ namespace Insurance.Models.Models
         // Foreign key
         [Required, NotNull]
         //Explicityly link "submittedby" to the ApplicationUser table
-        [ForeignKey("User")]
+        [ForeignKey("Submitter")]
         public string? SubmittedBy { get; set; }
         public ApplicationUser? Submitter { get; set; }
 
         // Foreign key
         [Required, NotNull]
         //Explicityly link "submittedby" to the ApplicationUser table
-        [ForeignKey("User")]
+        [ForeignKey("Updater")]
         public string? UpdatedBy { get; set; }
         public ApplicationUser? Updater { get; set; }
 

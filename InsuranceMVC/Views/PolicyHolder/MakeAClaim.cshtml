@@ -29,6 +29,7 @@
                         }
                     </p>
                     <!-- Add hidden fields for QuestionLabel and QuestionType -->
+                    <input type="hidden" asp-for="@Model[i].Id" />
                     <input type="hidden" asp-for="@Model[i].QuestionLabel" />
                     <input type="hidden" asp-for="@Model[i].QuestionTypeName" />
                     <input type="hidden" asp-for="@Model[i].QuestionTypeId" />
